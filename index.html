@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>LiteScope Research Paper</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+     <style>
+         body {
+             font-family: 'Inter', sans-serif;
+             background-color: #f0f4f8; /* Lighter, cooler gray */
+             color: #334155; /* Tailwind's slate-700 */
+             line-height: 1.8;
+         }
+         .main-container {
+             max-width: 1000px;
+             margin: 0 auto;
+             padding: 1rem; /* Add some padding for smaller screens */
+         }
+         .content-wrapper {
+             background-color: white;
+             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Softer, larger shadow */
+             border-radius: 0.75rem; /* rounded-xl */
+             overflow: hidden; /* To contain hero image if it bleeds */
+         }
+         .hero-section {
+             background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); /* Blue gradient */
+             color: white;
+             padding: 4rem 2.5rem; /* Increased padding */
+             text-align: center;
+             border-bottom-left-radius: 0.75rem;
+             border-bottom-right-radius: 0.75rem;
+         }
+         .hero-section h1 {
+             font-family: 'Lora', serif; /* Fancy display font */
+             font-size: 2.75rem; /* Larger title */
+             font-weight: 700;
+             margin-bottom: 1rem;
+             line-height: 1.3;
+         }
+         .section {
+             padding: 2.5rem; /* p-10 */
+         }
+         .section h2 {
+             font-family: 'Lora', serif;
+             font-size: 1.875rem; /* text-3xl */
+             font-weight: 600;
+             color: #1e3a8a; /* Darker blue for headings */
+             margin-bottom: 1.5rem; /* mb-6 */
+             padding-bottom: 0.75rem; /* pb-3 */
+             border-bottom: 3px solid #60a5fa; /* Accent border */
+         }
+         p, li {
+             margin-bottom: 1.25rem; /* mb-5 */
+             color: #475569; /* Tailwind's slate-600 */
+         }
+         .text-justify {
+             text-align: justify;
+         }
+         .download-link {
+             display: inline-flex; /* For icon alignment */
+             align-items: center;
+             background-color: #2563eb; /* Tailwind's blue-600 */
+             color: white;
+             padding: 0.75rem 1.5rem; /* py-3 px-6 */
+             border-radius: 0.5rem; /* rounded-lg */
+             text-decoration: none;
+             margin-right: 1rem; /* mr-4 */
+             margin-bottom: 1rem; /* mb-4 */
+             transition: all 0.3s ease;
+             font-weight: 600; /* semibold */
+             box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+         }
+         .download-link:hover {
+             background-color: #1d4ed8; /* Tailwind's blue-700 */
+             transform: translateY(-2px);
+             box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+         }
+         .download-link svg {
+             margin-right: 0.5rem;
+         }
+         .email-link {
+             color: #2563eb;
+             font-weight: 600;
+             text-decoration: none;
+         }
+         .email-link:hover {
+             text-decoration: underline;
+         }
+         .keywords-container span {
+             display: inline-block;
+             background-color: #e2e8f0; /* Tailwind's slate-200 */
+             color: #1e3a8a; /* Dark blue text */
+             padding: 0.5rem 1rem; /* py-2 px-4 */
+             border-radius: 9999px; /* rounded-full */
+             font-size: 0.9rem; /* Slightly larger */
+             margin-right: 0.75rem; /* mr-3 */
+             margin-bottom: 0.75rem; /* mb-3 */
+             font-weight: 500;
+             transition: all 0.2s ease;
+         }
+         .keywords-container span:hover {
+             background-color: #3b82f6;
+             color: white;
+             transform: scale(1.05);
+         }
+         .citation-box {
+             background-color: #eef2ff; /* Lighter blue-gray */
+             border-left: 6px solid #3b82f6; /* Thicker accent border */
+             padding: 1.5rem; /* p-6 */
+             margin-top: 2rem; /* mt-8 */
+             border-radius: 0.375rem; /* rounded-md */
+             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+         }
+         .citation-box p {
+             color: #1e3a8a;
+             font-style: normal; /* Less emphasis on italic */
+             margin-bottom: 0.5rem;
+         }
+         .figure-container {
+             margin-top: 1rem; /* Adjusted margin for figures */
+             margin-bottom: 1rem; /* Adjusted margin for figures */
+             text-align: center;
+         }
+         .figure-container img {
+             max-width: 100%;
+             height: auto;
+             border-radius: 0.5rem; /* rounded-lg */
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+             margin-bottom: 1rem; /* mb-4 */
+             border: 1px solid #e2e8f0; /* Light border */
+         }
+         .figure-container.large-figure img {
+             max-width: 80%; /* Adjust width for larger figures */
+             margin-left: auto;
+             margin-right: auto;
+         }
+         .figure-container figcaption {
+             font-size: 0.875rem; /* text-sm */
+             color: #64748b; /* Tailwind's slate-500 */
+             font-style: italic;
+         }
+         .footer {
+             text-align: center;
+             padding: 2.5rem; /* Increased padding */
+             background-color: #1e293b; /* Dark slate */
+             color: #94a3b8; /* Lighter text for footer */
+             font-size: 0.875rem; /* text-sm */
+             margin-top: 2rem; /* Ensure space from content */
+         }
+         .footer p {
+             margin-bottom: 0.25rem;
+             color: #cbd5e1; /* Even lighter for main text */
+         }
+         .footer a {
+             color: #60a5fa;
+             text-decoration: none;
+         }
+         .footer a:hover {
+             text-decoration: underline;
+         }
+
+         /* Responsive adjustments */
+         @media (max-width: 768px) {
+             .hero-section h1 {
+                 font-size: 2rem;
+             }
+             .section h2 {
+                 font-size: 1.5rem;
+             }
+             .section {
+                 padding: 1.5rem;
+             }
+             .hero-section {
+                 padding: 2.5rem 1.5rem;
+             }
+             .download-link {
+                 margin-right: 0.5rem; /* Adjust margin for smaller screens */
+                 padding: 0.6rem 1.2rem;
+             }
+             .figure-container.large-figure img {
+                 max-width: 95%; /* Adjust for smaller screens */
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <div class="main-container">
+         <div class="content-wrapper">
+             <header class="hero-section">
+                 <h1>
+                     LiteScope: Reveal The Security Paradox of Android Lite Apps in Resource-Constrained Ecosystems
+                 </h1>
+                 <p class="authors">
+                     Anonymous Authors
+                     </p>
+             </header>
+
+             <section id="abstract" class="section">
+                 <h2>Abstract</h2>
+                 <p class="text-justify">
+                     Android Lite Apps, streamlined versions of full-featured applications, gain significant popularity, particularly among low-end devices and bandwidth-constrained networks. However, Lite Apps receive widespread bug complaints in Google Play, even for world-famous apps like Facebook Lite. This contradicts the common belief that fewer features improve robustness. Unfortunately, understanding this phenomenon remains limited and challenging. To be specific, we identify three core challenges: (C1) asymmetric version alignment between Lite and Full Apps, (C2) lack of a comprehensive large-scale crash dataset, and (C3) semantic correspondence complexity stemming from code divergence and obfuscation. To tackle these challenges, we present LiteScope, a prototype that systematically aligns Lite-Full versions using semantic and structural heuristics, generates a Lite-specific crash dataset via differential bug-triggering, and performs root cause analysis through semantic comparison. Through the evaluation of 536 Lite-Full Apps pairs, we trigger 179 Lite-specific crashes, from which we distill five critical findings. Based on these insights, we formulate actionable recommendations for developers to enhance the stability and security of Lite Apps.
+                 </p>
+             </section>
+
+             <section id="figures" class="section">
+                 <h2>Key Figures</h2>
+                 <div class="grid md:grid-cols-2 gap-8 mb-8">
+                     <div class="figure-container">
+                         <img src="./index_1.png" alt="Figure 1: Facebook Lite vs Full & Complaint Rates">
+                         <figcaption>Fig. 1: (a) Broken page in Facebook Lite vs. (b) functional change-password in Facebook Full.</figcaption>
+                     </div>
+                     <div class="figure-container">
+                         <img src="./index_2.png" alt="Figure 7: Different Implementations in Cologne Offline City Map">
+                         <figcaption>Fig. 7: Different implement between Lite and Full version Cologne Offline City Map.</figcaption>
+                     </div>
+                 </div>
+                 <div class="figure-container large-figure">
+                     <img src="./index_3.png" alt="Figure 8: Semantic Differential Pipeline">
+                     <figcaption>Fig. 8: The semantic differential pipeline used in LiteScope for root cause analysis.</figcaption>
+                 </div>
+             </section>
+
+             <section id="datasets" class="section">
+                 <h2>Datasets</h2>
+                 <p>
+                     The `crashes.csv` file provides a summary of the crash information presented in the paper.
+                     To access the full datasets, which include 179 Lite-specific crash instances with corresponding source-code excerpts, please contact the author by email:
+                     <a href="mailto:xxx@gmail.com" class="email-link">Anonymous</a>.
+                 </p>
+                 <p>
+                     For security reasons and to protect app developers, we have eliminated the exact versions of the apps in the publicly shared information.
+                 </p>
+                 <div class="mt-6">
+                     <a href="ids.csv" download class="download-link">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                         </svg>
+                         Download ids.csv
+                     </a>
+                 </div>
+             </section>
+
+             <section id="keywords" class="section">
+                 <h2>Keywords</h2>
+                 <div class="keywords-container">
+                     <span>Lite Apps</span>
+                     <span>Crash Analysis</span>
+                     <span>Apps Security</span>
+                     <span>Android</span>
+                     <span>Mobile Security</span>
+                     <span>Resource-Constrained Ecosystems</span>
+                     <span>Differential Testing</span>
+                     <span>Semantic Analysis</span>
+                 </div>
+             </section>
+
+             <section id="citation" class="section">
+                 <h2>Citation</h2>
+                 <div class="citation-box">
+                     <p>
+                         <strong>Anonymous Authors (2025). LiteScope: Reveal The Security Paradox of Android Lite Apps in Resource-Constrained Ecosystems. DOI: xxxx</strong>
+                     </p>
+                     <!-- <p class="text-sm mt-2">
+                         (Please update with the full, correct citation details for your publication.)
+                     </p> -->
+                 </div>
+             </section>
+         </div> <footer class="footer">
+             <p>
+                 &copy; <span id="currentYear"></span> Anonymous / Research Group. All rights reserved.
+             </p>
+             <p>
+                 Learn more about our work at <a href="#" target="_blank">yourlabwebsite.com</a>
+             </p>
+             <p>
+                 Website designed for the LiteScope research paper.
+             </p>
+         </footer>
+     </div> <script>
+         // Script to set the current year in the footer
+         document.getElementById('currentYear').textContent = new Date().getFullYear();
+     </script>
+ </body>
+ </html>
