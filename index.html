@@ -38,7 +38,7 @@
              font-family: 'Lora', serif; /* Fancy display font */
              font-size: 2.75rem; /* Larger title */
              font-weight: 700;
-             margin-bottom: 1rem;
+             margin-bottom: 1rem; /* Adjusted margin as author line is removed */
              line-height: 1.3;
          }
          .section {
@@ -53,9 +53,32 @@
              padding-bottom: 0.75rem; /* pb-3 */
              border-bottom: 3px solid #60a5fa; /* Accent border */
          }
+         .section h3 { /* Style for subheadings like "Field Descriptions" */
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* semibold */
+            color: #1e40af; /* Slightly lighter blue */
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.75rem; /* mb-3 */
+         }
          p, li {
              margin-bottom: 1.25rem; /* mb-5 */
              color: #475569; /* Tailwind's slate-600 */
+         }
+         ul.field-list { /* Style for field description lists */
+            list-style-type: none;
+            padding-left: 0;
+         }
+         ul.field-list li {
+            margin-bottom: 0.5rem; /* mb-2 */
+         }
+         ul.field-list code { /* Style for field names */
+            background-color: #e2e8f0; /* Tailwind's slate-200 */
+            color: #1e3a8a;
+            padding: 0.125rem 0.375rem; /* py-0.5 px-1.5 */
+            border-radius: 0.25rem; /* rounded-sm */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
          }
          .text-justify {
              text-align: justify;
@@ -171,6 +194,9 @@
              .section h2 {
                  font-size: 1.5rem;
              }
+             .section h3 {
+                font-size: 1.125rem; /* text-lg */
+             }
              .section {
                  padding: 1.5rem;
              }
@@ -194,24 +220,66 @@
                  <h1>
                      LiteScope: Reveal The Security Paradox of Android Lite Apps in Resource-Constrained Ecosystems
                  </h1>
-                 <p class="authors">
-                     Anonymous Authors
-                     </p>
-             </header>
+                 </header>
 
              <section id="abstract" class="section">
                  <h2>Abstract</h2>
                  <p class="text-justify">
-                     Android Lite Apps, streamlined versions of full-featured applications, gain significant popularity, particularly among low-end devices and bandwidth-constrained networks. However, Lite Apps receive widespread bug complaints in Google Play, even for world-famous apps like Facebook Lite. This contradicts the common belief that fewer features improve robustness. Unfortunately, understanding this phenomenon remains limited and challenging. To be specific, we identify three core challenges: (C1) asymmetric version alignment between Lite and Full Apps, (C2) lack of a comprehensive large-scale crash dataset, and (C3) semantic correspondence complexity stemming from code divergence and obfuscation. To tackle these challenges, we present LiteScope, a prototype that systematically aligns Lite-Full versions using semantic and structural heuristics, generates a Lite-specific crash dataset via differential bug-triggering, and performs root cause analysis through semantic comparison. Through the evaluation of 536 Lite-Full Apps pairs, we trigger 179 Lite-specific crashes, from which we distill five critical findings. Based on these insights, we formulate actionable recommendations for developers to enhance the stability and security of Lite Apps.
+                     Android Lite Apps, streamlined versions of full-featured applications, gain significant popularity, particularly among low-end devices and bandwidth-constrained networks. However, Lite Apps on Google Play receive widespread bug complaints, even for world-famous apps like Facebook Lite. This phenomenon contradicts the common belief that fewer features improve robustness. Unfortunately, understanding this phenomenon remains limited and challenging. To be specific, we identify three core challenges: (C1) asymmetric version alignment between Lite and Full Apps, (C2) lack of a comprehensive large-scale crash dataset, and (C3) semantic correspondence complexity stemming from code divergence and obfuscation. To tackle these challenges, we present LiteScope, a prototype that systematically aligns Lite–Full versions using semantic and structural heuristics, generates a Lite-specific crash dataset via differential bug-triggering, and performs root cause analysis through semantic comparison. Through the evaluation of numerous Lite–Full Apps pairs, we triggered a significant number of Lite-specific crashes, from which we distill five critical findings.
                  </p>
              </section>
+
+             <section id="datasets" class="section">
+                 <h2>Datasets</h2>
+                 <p>
+                    Crashes information, based on the Lite-specific crashes detailed in the paper, is available in the `crashes.csv` file below. Our research and testing efforts are ongoing, and the number of identified crashes has since grown. We are committed to providing comprehensive information to developers.
+                 </p>
+                 <p>
+                     For security reasons and to protect app developers, we have eliminated the exact versions of the apps in the publicly shared information.
+                 </p>
+                 <div class="mt-6">
+                     <a href="crashes.csv" download class="download-link">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                         </svg>
+                         Download crashes.csv
+                     </a>
+                     <a href="ids.csv" download class="download-link">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                         </svg>
+                         Download ids.csv
+                     </a>
+                 </div>
+
+                 <h3 class="mt-8">Field Descriptions</h3>
+                 <div>
+                     <h4>crashes.csv (Summary File)</h4>
+                     <ul class="field-list">
+                         <li><code>id</code>: Unique identifier for the crash instance.</li>
+                         <li><code>type</code>: The type or category of the crash (e.g., NullPointerException).</li>
+                         <li><code>long_msg</code>: A detailed message or description associated with the crash.</li>
+                         <li><code>details</code>: Further specific details or stack trace information.</li>
+                         <li><code>file</code>: The source file where the crash occurred, if available.</li>
+                     </ul>
+                 </div>
+                 <div class="mt-4">
+                     <h4>ids.csv</h4>
+                     <ul class="field-list">
+                         <li><code>lite_id</code>: The package identifier for the Lite version of the app.</li>
+                         <li><code>lite_name</code>: The display name of the Lite app.</li>
+                         <li><code>full_id</code>: The package identifier for the Full version of the app.</li>
+                         <li><code>full_name</code>: The display name of the Full app.</li>
+                     </ul>
+                 </div>
+                 </section>
 
              <section id="figures" class="section">
                  <h2>Key Figures</h2>
                  <div class="grid md:grid-cols-2 gap-8 mb-8">
                      <div class="figure-container">
                          <img src="./index_1.png" alt="Figure 1: Facebook Lite vs Full & Complaint Rates">
-                         <figcaption>Fig. 1: (a) Broken page in Facebook Lite vs. (b) functional change-password in Facebook Full.</figcaption>
+                         <figcaption>Fig. 1: (a) Broken page in Facebook Lite vs. (b) functional in Facebook Full; (c) Higher complaint rates in Lite Apps.</figcaption>
                      </div>
                      <div class="figure-container">
                          <img src="./index_2.png" alt="Figure 7: Different Implementations in Cologne Offline City Map">
@@ -222,27 +290,7 @@
                      <img src="./index_3.png" alt="Figure 8: Semantic Differential Pipeline">
                      <figcaption>Fig. 8: The semantic differential pipeline used in LiteScope for root cause analysis.</figcaption>
                  </div>
-             </section>
-
-             <section id="datasets" class="section">
-                 <h2>Datasets</h2>
-                 <p>
-                     The `crashes.csv` file provides a summary of the crash information presented in the paper.
-                     To access the full datasets, which include 179 Lite-specific crash instances with corresponding source-code excerpts, please contact the author by email:
-                     <a href="mailto:xxx@gmail.com" class="email-link">Anonymous</a>.
-                 </p>
-                 <p>
-                     For security reasons and to protect app developers, we have eliminated the exact versions of the apps in the publicly shared information.
-                 </p>
-                 <div class="mt-6">
-                     <a href="ids.csv" download class="download-link">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                         </svg>
-                         Download ids.csv
-                     </a>
-                 </div>
-             </section>
+                  </section>
 
              <section id="keywords" class="section">
                  <h2>Keywords</h2>
@@ -262,20 +310,11 @@
                  <h2>Citation</h2>
                  <div class="citation-box">
                      <p>
-                         <strong>Anonymous Authors (2025). LiteScope: Reveal The Security Paradox of Android Lite Apps in Resource-Constrained Ecosystems. DOI: xxxx</strong>
+                         <strong>[Author(s) Undisclosed for Pre-print] (2025). LiteScope: Reveal The Security Paradox of Android Lite Apps in Resource-Constrained Ecosystems. <em>Journal/Conference Name, Volume</em>(Issue), Page numbers. DOI: [Insert DOI Here if available]</strong>
                      </p>
-                     <!-- <p class="text-sm mt-2">
-                         (Please update with the full, correct citation details for your publication.)
-                     </p> -->
                  </div>
              </section>
          </div> <footer class="footer">
-             <p>
-                 &copy; <span id="currentYear"></span> Anonymous / Research Group. All rights reserved.
-             </p>
-             <p>
-                 Learn more about our work at <a href="#" target="_blank">yourlabwebsite.com</a>
-             </p>
              <p>
                  Website designed for the LiteScope research paper.
              </p>
